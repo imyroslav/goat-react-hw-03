@@ -1,8 +1,8 @@
+import css from './ContactForm.module.css';
 import { useId } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
-import css from "./ContactForm.module.css";
 
 export default function ContactForm({ addContact, validationSchema }) {
   const initialValues = {
@@ -21,14 +21,14 @@ export default function ContactForm({ addContact, validationSchema }) {
     actions.resetForm();
   };
 
-    
-    return (
-        <Formik
-            initialValues={initialValues}
-            onSubmit={handleSubmit}
-            validationSchema={validationSchema}
-        >
-            {({ errors, touched }) => (
+  return (
+    <div>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={validationSchema}
+      >
+        {({ errors, touched }) => (
           <Form className={css.form}>
             <label htmlFor={nameFieldId}>Name</label>
             <Field
@@ -57,6 +57,7 @@ export default function ContactForm({ addContact, validationSchema }) {
             </button>
           </Form>
         )}
-        </Formik>
-    )
+      </Formik>
+    </div>
+  );
 }

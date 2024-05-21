@@ -1,16 +1,16 @@
-import ContactForm from '../ContactForm/ContactForm.jsx';
-import SearchBox from '../SearchBox/SearchBox.jsx';
-import ContactList from '../ContactList/ContactList.jsx';
+import ContactForm from "../ContactForm/ContactForm.jsx";
+import SearchBox from "../SearchBox/SearchBox.jsx";
+import ContactList from "../ContactList/ContactList.jsx";
 import initialsContacts from "../ContactList/ContactList.json";
-import css from './App.module.css';
-import { useState, useEffect } from 'react';
-import * as yup from 'yup';
+import css from "./App.module.css";
+import { useState, useEffect } from "react";
+import * as yup from "yup";
 export default function App() {
   const [contacts, setContacts] = useState(() => {
-    const storedContacts = localStorage.getItem('contacts');
+    const storedContacts = localStorage.getItem("contacts");
     return storedContacts ? JSON.parse(storedContacts) : initialsContacts;
   });
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState(" ");
 
   const addContact = newContact => {
     setContacts(prevContacts => {
@@ -31,18 +31,18 @@ export default function App() {
   const validationSchema = yup.object().shape({
     name: yup
       .string()
-      .required('Name is required')
-      .min(3, 'Name must be at least 3 characters')
-      .max(50, 'Name must not exceed 50 characters'),
+      .required("Name is required")
+      .min(3, "Name must be at least 3 characters")
+      .max(50, "Name must not exceed 50 characters"),
     phoneNumber: yup
       .string()
-      .required('Phone number is required')
-      .min(3, 'Phone number must be at least 3 characters')
-      .max(50, 'Phone number must not exceed 50 characters'),
+      .required("Phone number is required")
+      .min(3, "Phone number must be at least 3 characters")
+      .max(50, "Phone number must not exceed 50 characters"),
   });
 
   useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
+    localStorage.setItem("contacts", JSON.stringify(contacts));
   }, [contacts]);
 
   return (
